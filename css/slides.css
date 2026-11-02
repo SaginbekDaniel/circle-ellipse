@@ -1,0 +1,161 @@
+/* ==========================================================================
+   slides.css — scene composition. Each slide declares data-layout; the layouts differ on purpose:
+   hero · duo · proof · lab · matrix · optics · immersive · stage · editorial · finale
+   ========================================================================== */
+.slide{display:flex;flex-direction:column;padding:2.7rem 3.8rem 6.8rem}
+.head{flex:none;position:relative;z-index:4;display:flex;flex-direction:column;gap:.95rem;margin-bottom:1.1rem;pointer-events:none}
+.head>*{pointer-events:auto}
+h1 .w>span{background:linear-gradient(180deg,#fff 12%,var(--ice) 150%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#fff}
+.body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(22rem,27rem);gap:2.2rem;position:relative;z-index:2}
+.viz{position:relative;min-height:0;min-width:0}
+.viz svg,.viz canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.side{min-height:0;display:flex;flex-direction:column;border-radius:var(--r-xl);overflow:hidden;align-self:start;max-height:100%}
+.side-in{flex:1;min-height:0;overflow:auto;padding:1.25rem 1.5rem 1.4rem;scrollbar-width:thin;scrollbar-color:rgba(169,220,255,.25) transparent}
+/* presentation mode shows one focus; research mode adds measurements, notes and proofs */
+body[data-mode=present] .res{display:none!important}
+
+/* ---------- shared readout pieces ---------- */
+.k{font:600 var(--fs-label) var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
+.sc{display:flex;flex-direction:column;gap:.25rem;min-width:0}
+.sc b{font:560 1.55rem var(--mono);letter-spacing:-.025em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sc .sep{opacity:.35;font-style:normal;margin:0 .1em;font-weight:400}
+.sc-row{display:flex;align-items:center;flex-wrap:wrap;gap:1rem 2.6rem}
+.pane{position:relative;min-height:0;border-radius:var(--r-xl);overflow:hidden;background:radial-gradient(90% 80% at 50% 46%,rgba(72,184,255,.09),rgba(5,11,20,.25) 72%);box-shadow:inset 0 0 0 1px var(--rule2),inset 0 1px 0 rgba(255,255,255,.07)}
+.pane-k{position:absolute;left:1.3rem;top:1.05rem;z-index:2;display:flex;flex-direction:column;gap:.15rem;pointer-events:none}
+.pane-k b{font:620 var(--fs-ui) var(--sans);letter-spacing:-.005em}
+.pane-k span{font:500 var(--fs-label) var(--mono);color:var(--ink2);letter-spacing:.06em}
+.hud{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem 1.5rem;padding:1.15rem 1.4rem;border-radius:var(--r-xl)}
+.hm{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+.hm b{font:560 1.6rem var(--mono);letter-spacing:-.025em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.hm b.hm-txt{font:500 .95rem/1.25 var(--sans);letter-spacing:0;white-space:normal}
+.drawer{padding:1.1rem 1.3rem;border-radius:var(--r-xl)}
+.drawer .btns{margin-top:0}
+.drawer .xd{margin-bottom:0}
+.drawer .xd-body,.side.strip .xd-body{max-height:36vh;overflow:auto;scrollbar-width:thin;scrollbar-color:rgba(169,220,255,.25) transparent}
+.cdock{display:flex;align-items:center;gap:1.2rem 2.4rem;flex-wrap:wrap;padding:.9rem 1.6rem;border-radius:var(--r-xl)}
+.cdock .btns,.cdock .togs{margin:0}
+.cd-sl{flex:1 1 22rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.2rem}
+
+/* ---------- hero (01): the ellipse is the atmosphere; type overlaps it ---------- */
+[data-layout=hero] .head{position:absolute;left:3.8rem;top:15vh;max-width:50%;gap:1.4rem}
+[data-layout=hero] h1{font-size:var(--fs-hero);line-height:.97;letter-spacing:-.048em;max-width:7.6em;font-weight:700}
+[data-layout=hero] .body{position:static;display:block}
+[data-layout=hero] .viz{position:absolute;right:0;top:0;bottom:0;width:64%;z-index:1}
+[data-layout=hero] .side{position:absolute;left:3.8rem;bottom:7.4rem;width:min(33rem,34vw);z-index:5}
+[data-layout=hero] .side .lead{margin:1rem 0 .4rem}
+[data-layout=hero] #s1q{position:absolute;right:3.8rem;top:5.6rem;width:min(31rem,31vw);z-index:6}
+.q-lead{font-size:clamp(1.3rem,1.9vw,1.9rem)!important;line-height:1.22;letter-spacing:-.02em;font-weight:500;color:var(--ink)!important;margin:0 0 1rem!important}
+#s1law{min-height:3.9em}
+
+/* ---------- duo (02, 08): two environments, readouts docked beneath ---------- */
+[data-layout=duo] .body{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:1.1rem}
+.viz.duo{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.viz.duo8{grid-template-rows:minmax(0,1fr) 6.2rem}
+.viz.duo8 .chart{grid-column:1/-1}
+.pane.chart svg{inset:1.7rem 0 0 0;height:calc(100% - 1.7rem)}
+.pane.chart .pane-k{flex-direction:row;gap:.8rem;align-items:baseline}
+.side.strip{overflow:visible}
+.side.strip .side-in{padding:.9rem 1.5rem;overflow:visible}
+.side.strip .inv{margin:0}
+.side.strip .ctl.wide{width:17rem;margin:0}
+.side.strip .btns{margin:0}
+.side.strip details.xd{margin:.8rem 0 0}
+
+/* ---------- proof (03): a small figure, a long calm derivation ---------- */
+[data-layout=proof] .body{grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:2.6rem}
+[data-layout=proof] .side{align-self:stretch;background:none;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;overflow:visible}
+[data-layout=proof] .side::before,[data-layout=proof] .side::after{display:none}
+[data-layout=proof] .side-in{padding:.5rem 0 0 2.6rem;border-left:1px solid var(--rule2)}
+[data-layout=proof] .step .eq{font-size:clamp(1.5rem,2.3vw,2.4rem)}
+.s3count{align-self:center}
+#s3steps:not(.all) .step.shown:not(.cur):not(.prev){display:none}
+body[data-mode=research] #s3steps .step.shown{display:block}
+#s3chk{padding:.6rem 1rem}#s3chk h2{margin:0 0 .4rem}
+#s3steps{padding-top:.4rem}
+[data-layout=proof] .body{align-items:center}
+[data-layout=proof] .viz{align-self:stretch}
+[data-layout=proof] .side{align-self:center}
+
+/* ---------- lab (04): the ellipse is the hero, parameters live in a dock ---------- */
+[data-layout=lab] .body{grid-template-columns:minmax(0,1fr) 24rem;grid-template-rows:minmax(0,1fr) auto;gap:1.1rem 2.2rem}
+[data-layout=lab] .viz{grid-row:1;grid-column:1;margin:-1rem 0 0}
+[data-layout=lab] .cdock{grid-column:1/-1}
+[data-layout=lab] .side-in{padding-top:1.5rem}
+#s4eq{min-height:4.2rem;display:flex;align-items:center;flex-wrap:wrap;gap:.3rem}
+.s4state{margin:.2rem 0 1rem}
+.ecc-scale{display:flex;justify-content:space-between;font-size:.74rem}
+.zoomg *{vector-effect:non-scaling-stroke}
+
+/* ---------- matrix (05) ---------- */
+[data-layout=matrix] .body{grid-template-columns:minmax(0,1.3fr) minmax(24rem,29rem)}
+[data-layout=matrix] .eq.big{font-size:clamp(1.25rem,1.7vw,1.7rem);line-height:1.9}
+.mat{display:inline-grid;grid-template-columns:auto auto;gap:.35rem 1.6rem;padding:.55rem 1.1rem;border-left:2px solid var(--ice);border-right:2px solid var(--ice);border-radius:.5rem;font:500 clamp(1.05rem,1.4vw,1.4rem) var(--mono);font-variant-numeric:tabular-nums;color:var(--ink);box-shadow:inset 0 0 24px -12px rgba(72,184,255,.5)}
+#s5l{font-size:.9rem;color:var(--ink2);margin:.7rem 0}
+.s5eq{font-size:1.15rem;line-height:1.55}
+
+/* ---------- optics (06): the wall of light is the scene ---------- */
+[data-layout=optics] .body{grid-template-columns:minmax(0,1fr) 23rem;gap:1.8rem}
+.s6lead{margin:0 0 .8rem!important}
+.ray-lab{font:600 13px var(--sans)!important;paint-order:stroke;stroke:#050B14;stroke-width:4px;stroke-linejoin:round;letter-spacing:.01em}
+
+/* ---------- immersive (07, 09): the simulation takes the whole stage ---------- */
+[data-layout=immersive] .body{position:static;display:block}
+[data-layout=immersive] .viz{position:absolute;left:0;right:0;top:4.2rem;bottom:5.6rem;z-index:1}
+[data-layout=immersive] .hud{position:absolute;top:2.5rem;right:3.8rem;width:min(23rem,25vw);z-index:5}
+[data-layout=immersive] .drawer{position:absolute;left:3.8rem;bottom:6.6rem;width:min(36rem,36vw);z-index:5}
+@media (min-width:901px){#s9 .viz{left:17%}#s7 .viz{left:8%}}
+#s7warn{margin:.2rem 0 .5rem}
+#s7kind{max-width:11rem}
+
+/* ---------- stage (10): data field + glass panel ---------- */
+[data-layout=stage] .body{grid-template-columns:minmax(0,1.6fr) minmax(24rem,29rem)}
+[data-layout=stage] .side .eq{font-size:1.25rem;line-height:1.9}
+.s10tab{margin:.7rem 0}
+.bar-dual{position:relative;height:.7rem;margin:.9rem 0 .4rem}
+.s10lab{font-size:.85rem}
+#s10cv2{pointer-events:none}
+
+/* ---------- editorial (11): restraint — the formulas are the drama ---------- */
+[data-layout=editorial] .body{grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:3.2rem}
+.ed-col{display:flex;flex-direction:column;gap:1.5rem;min-height:0;min-width:0}
+.ed-col .side{overflow:auto;align-self:stretch}
+.ed-eq{display:flex;flex-direction:column;gap:.35rem;padding-left:1.2rem;border-left:2px solid var(--blue)}
+.ed-eq .eq.big{font-size:clamp(1.7rem,2.7vw,2.8rem);line-height:1.25}
+.ed-hard{border-left-color:var(--focus)}
+.ed-hard .eq.big{font-size:clamp(1.25rem,1.9vw,2rem);line-height:1.5}
+.ed-viz{display:flex;flex-direction:column;gap:1rem;min-height:0;min-width:0}
+.ed-viz .viz{flex:1}
+[data-layout=editorial] .cdock{padding:.8rem 1.4rem}
+
+/* ---------- finale (12) ---------- */
+[data-layout=finale] .body{grid-template-columns:minmax(0,1.5fr) minmax(20rem,27rem)}
+.insight{border-left:2px solid var(--focus);padding-left:1rem;margin-top:1.2rem!important;font-size:clamp(1.15rem,1.6vw,1.6rem)!important}
+.slide.active .node{animation:nodeIn .9s var(--ease) both;animation-delay:calc(.55s + var(--ni,0)*.15s)}
+.slide.active .cn{animation:cnIn 1s var(--ease) both;animation-delay:calc(.4s + var(--ni,0)*.15s)}
+@keyframes nodeIn{from{opacity:0;transform:translateY(12px)}}
+@keyframes cnIn{from{opacity:0}}
+.slide.active .core{animation:coreIn 1.4s var(--ease) both .1s}
+@keyframes coreIn{from{opacity:0}}
+
+/* ---------- small screens: everything stacks; nothing floats over the figure ---------- */
+@media (max-width:900px){
+  html{font-size:clamp(13px,3.6vw,17px)}
+  .slide{padding:2rem 1rem 6.2rem;overflow-y:auto;overflow-x:hidden}
+  .head{margin-bottom:.8rem}
+  .body,.body[class]{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:none!important;gap:1rem;flex:none}
+  .seg{max-width:100%;overflow-x:auto;scrollbar-width:none}.seg::-webkit-scrollbar{display:none}
+  [data-layout=hero] .head,[data-layout=hero] .viz,[data-layout=hero] .side,[data-layout=hero] #s1q,
+  [data-layout=immersive] .viz,[data-layout=immersive] .hud,[data-layout=immersive] .drawer{position:relative;inset:auto;width:auto;left:auto;right:auto;top:auto;bottom:auto}
+  [data-layout=hero] .body,[data-layout=immersive] .body{display:grid}
+  [data-layout=hero] h1{font-size:clamp(2.2rem,9vw,3.2rem);max-width:none}
+  .viz{height:min(92vw,62vh);flex:none}
+  .viz.duo{grid-template-columns:1fr;height:auto}.viz.duo .pane{height:min(92vw,56vh)}.viz.duo8 .pane.chart{height:6rem}
+  [data-layout=lab] .cdock{grid-column:auto}
+  .side,.side.strip{overflow:visible}.side-in{overflow-y:visible;overflow-x:auto}
+  .ed-viz .viz{height:min(92vw,56vh)}
+  .overlay{padding:3rem 1.1rem}
+  .dk-track,.dk-pos,.dk-sep{display:none}
+  .dock{gap:.15rem}
+  #audit{max-width:80vw;bottom:5.4rem}
+}
+@media (max-height:620px) and (min-width:901px){.slide{padding-top:2rem}[data-layout=hero] .head{top:16vh}}

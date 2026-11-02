@@ -1,0 +1,82 @@
+/* ==========================================================================
+   chrome.css — dock, tools popover, overlays, notes, audit, toast
+   ========================================================================== */
+/* ---------- the floating glass dock ---------- */
+.dock{position:fixed;left:50%;bottom:1.25rem;z-index:30;transform:translateX(-50%);display:flex;align-items:center;gap:.35rem;padding:.4rem .5rem;
+  max-width:calc(100vw - 1.5rem);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.dock .dk-btn{flex:none;display:grid;place-items:center;min-width:2.2rem;height:2.2rem;padding:0;border:0;border-radius:var(--r-pill);background:none;color:var(--ink2);cursor:pointer;
+  font:600 .74rem var(--mono);letter-spacing:.1em;text-transform:uppercase;transition:color var(--d-micro),background var(--d-ctl),transform var(--d-ctl) var(--spring)}
+.dock .dk-btn svg{width:1.05rem;height:1.05rem;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.dock .dk-btn:hover{color:var(--ink);background:rgba(169,220,255,.1)}
+.dock .dk-btn:active{transform:scale(.9)}
+.dock .dk-btn[aria-pressed=true],.dock .dk-btn[aria-expanded=true]{color:var(--ice);background:rgba(72,184,255,.16)}
+.dock .dk-txt{padding:0 .8rem}
+.dk-track{position:relative;display:flex;gap:.1rem;padding:.15rem}
+.dk-n{position:relative;z-index:1;width:1.95rem;height:1.95rem;border:0;border-radius:var(--r-pill);background:none;cursor:pointer;color:var(--ink3);font:600 .74rem var(--mono);letter-spacing:.02em;font-variant-numeric:tabular-nums;transition:color var(--d-ctl)}
+.dk-n:hover{color:var(--ink)}
+.dk-n.done{color:var(--ink2)}
+.dk-n[aria-current=step]{color:#03101c}
+.dk-track .liq{top:.15rem;bottom:.15rem}
+.dk-sep{flex:none;width:1px;height:1.2rem;background:var(--rule);margin:0 .25rem}
+.dk-pos{flex:none;font:500 .72rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);padding:0 .35rem;white-space:nowrap;min-width:12ch}
+.dk-prog{position:absolute;left:1.2rem;right:1.2rem;bottom:.14rem;height:2px;border-radius:2px;background:rgba(169,220,255,.1);overflow:hidden;pointer-events:none;z-index:3}
+.dk-prog::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--blue),var(--ice));transform:scaleX(var(--p,0));transform-origin:left;transition:transform .8s var(--ease)}
+body.idle .dock:not(:hover):not(:focus-within){opacity:.3;transform:translateX(-50%) translateY(.35rem)}
+.more{position:absolute;right:.4rem;bottom:calc(100% + .7rem);z-index:5;display:flex;flex-direction:column;padding:.4rem;min-width:15rem;transform-origin:bottom right;animation:popIn var(--d-ctl) var(--ease)}
+.more[hidden]{display:none}
+@keyframes popIn{from{opacity:0;transform:translateY(.6rem) scale(.96)}}
+.more button{display:flex;justify-content:space-between;align-items:center;gap:1rem;border:0;background:none;cursor:pointer;text-align:left;padding:.55rem .8rem;border-radius:var(--r-sm);color:var(--ink);font:500 var(--fs-ui) var(--sans);transition:background var(--d-micro)}
+.more button:hover{background:rgba(169,220,255,.1)}
+.more button kbd{font:600 .72rem var(--mono);color:var(--ink2);padding:.1rem .4rem;border-radius:.3rem;box-shadow:inset 0 0 0 1px var(--rule)}
+.more button[aria-pressed=true]{color:var(--ice)}
+.more button[aria-pressed=true] kbd{color:var(--ice);box-shadow:inset 0 0 0 1px var(--blue)}
+
+/* ---------- audit / toast ---------- */
+#audit{position:fixed;left:1.4rem;bottom:1.4rem;z-index:25;font:500 .78rem/1.55 var(--mono);color:var(--phys);padding:.6rem .9rem;max-width:min(34rem,40vw);pointer-events:none;border-radius:var(--r-md)}
+#audit b{color:var(--ink2);font-weight:500}
+#audit .hd{letter-spacing:.14em;text-transform:uppercase;color:var(--phys);font-weight:700;margin-bottom:.2rem}
+#toast{position:fixed;top:1.4rem;left:50%;z-index:60;transform:translate(-50%,-1rem);padding:.6rem 1.2rem;border-radius:var(--r-pill);font-size:var(--fs-ui);opacity:0;transition:opacity .4s var(--ease),transform .4s var(--ease);pointer-events:none;background:rgba(10,28,48,.92);box-shadow:inset 0 0 0 1px var(--rule),0 12px 40px -10px #000}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- overlays (modal — slides are paused beneath, so no backdrop blur is needed) ---------- */
+.overlay{position:fixed;inset:0;z-index:50;background:radial-gradient(120% 90% at 50% 0%,rgba(9,24,39,.97),rgba(3,7,13,.985));display:none;overflow:auto;padding:3.4rem 4rem}
+.overlay.on{display:block;animation:ovIn var(--d-reveal) var(--ease)}
+@keyframes ovIn{from{opacity:0}}
+.overlay h3{font:600 var(--fs-label) var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ice);margin-bottom:1.4rem}
+.overlay .close{position:fixed;top:1.2rem;right:1.6rem;z-index:2;border:0;cursor:pointer;color:var(--ink);padding:.5rem 1.1rem;border-radius:var(--r-pill);font:600 .76rem var(--mono);letter-spacing:.08em;background:rgba(169,220,255,.08);box-shadow:inset 0 0 0 1px var(--rule);transition:background var(--d-ctl)}
+.overlay .close:hover{background:rgba(169,220,255,.16)}
+#ovGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:1.1rem}
+#ovGrid button{text-align:left;border:0;border-radius:var(--r-lg);padding:1rem 1.1rem;cursor:pointer;display:flex;flex-direction:column;gap:.5rem;background:linear-gradient(160deg,rgba(110,184,255,.09),rgba(7,22,40,.5));box-shadow:inset 0 0 0 1px var(--rule2),inset 0 1px 0 rgba(255,255,255,.1);transition:transform var(--d-ctl) var(--spring),box-shadow var(--d-ctl)}
+#ovGrid button:hover,#ovGrid button.cur{box-shadow:inset 0 0 0 1px var(--blue),0 0 30px -10px rgba(72,184,255,.5);transform:translateY(-2px)}
+#ovGrid .n{font:600 .75rem var(--mono);color:var(--ice);letter-spacing:.14em}
+#ovGrid .t{font-weight:620;font-size:1.1rem;line-height:1.2;letter-spacing:-.015em}
+#ovGrid .d{font-size:.85rem;color:var(--ink2)}
+#ovGrid svg{width:100%;height:4.4rem}
+#help dl{display:grid;grid-template-columns:9rem 1fr;gap:.6rem 1.2rem;max-width:44rem;font-size:1.05rem}
+#help dt{font:600 .92rem var(--mono);color:var(--ice)}
+#help dd{color:var(--ink2)}
+
+/* ---------- presenter notes (docked, hidden by default) ---------- */
+#notes{position:fixed;right:1rem;top:1rem;bottom:5.2rem;width:min(30rem,92vw);z-index:40;padding:1.3rem 1.5rem;overflow:auto;transform:translateX(calc(100% + 2rem));transition:transform .6s var(--ease);font-size:.95rem;border-radius:var(--r-xl);background:rgba(7,20,36,.9)}
+#notes.on{transform:none}
+#notes h4{font:600 var(--fs-label) var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ice);margin:1.2rem 0 .35rem}
+#notes h4:first-child{margin-top:0}
+#notes p,#notes li{color:var(--ink2);margin:.25rem 0}
+#notes ul{padding-left:1.1rem}
+#notes .q{color:var(--ink)}
+#notes .sw{display:flex;gap:.5rem;align-items:center;margin-bottom:.8rem}
+body.clean #notes,body.clean #audit,body.clean #bMore,body.clean #more,body.clean #toast{display:none!important}
+
+/* ---------- research appendix ---------- */
+#appendix details{border-top:1px solid var(--rule);padding:.9rem 0;max-width:62rem}
+#appendix summary{cursor:pointer;font-weight:620;font-size:1.2rem;letter-spacing:-.01em;list-style:none;display:flex;gap:.8rem;align-items:baseline;flex-wrap:wrap}
+#appendix summary::-webkit-details-marker{display:none}
+#appendix summary::before{content:"+";font:600 1.1rem var(--mono);color:var(--blue);width:1rem}
+#appendix details[open] summary::before{content:"–"}
+#appendix .tag{font:600 .68rem var(--mono);letter-spacing:.12em;padding:.2rem .55rem;border-radius:var(--r-pill);box-shadow:inset 0 0 0 1px currentColor;text-transform:uppercase}
+.tag.thm{color:var(--phys)}.tag.num{color:var(--cyan)}.tag.ideal{color:var(--gold)}
+#appendix .ab{padding:.6rem 0 .4rem 1.8rem;color:var(--ink2);font-size:1.02rem;max-width:56rem}
+#appendix .ab p{margin:.55rem 0}
+#appendix .ab .eq{display:block;color:var(--ink);font-size:1.3rem;margin:.3rem 0}
+#appendix a{color:var(--cyan)}
+#appendix code{font-family:var(--mono);font-size:.9em;color:var(--ink)}

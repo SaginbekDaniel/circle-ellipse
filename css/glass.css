@@ -1,0 +1,45 @@
+/* ==========================================================================
+   glass.css — the liquid-glass material.
+   A pane is built from layers, not a single blur:
+     1. body      : cool tint gradient (thickness: lighter at the lip, deeper at the base)
+     2. specular  : a radial highlight that follows the pointer (--mx/--my, set by fx.js)
+     3. edge      : 1px gradient rim (lit from the top-left), drawn with a mask so it never fills
+     4. inner     : inset shadows = the pane's depth / internal reflection
+     5. cast      : soft shadow beneath, so the pane floats in the dark
+   Backdrop blur is kept small (≤16px) and only used on small panes.
+   ========================================================================== */
+.glass{
+  position:relative;isolation:isolate;border-radius:var(--r-lg);
+  background:
+    radial-gradient(130% 90% at var(--mx,18%) var(--my,0%),rgba(190,228,255,.15),transparent 58%),
+    linear-gradient(158deg,rgba(110,184,255,.13) 0%,rgba(28,70,112,.10) 40%,rgba(7,22,40,.42) 100%);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.2),
+    inset 0 -1px 0 rgba(0,0,0,.4),
+    inset 0 22px 34px -26px rgba(190,228,255,.26),
+    inset 0 -20px 30px -24px rgba(72,184,255,.12),
+    0 1px 2px rgba(0,0,0,.45),
+    0 24px 60px -18px rgba(0,6,18,.85);
+}
+.glass::before{                       /* illuminated rim */
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;z-index:2;
+  background:linear-gradient(150deg,rgba(214,238,255,.6) 0%,rgba(72,184,255,.1) 26%,rgba(72,184,255,.03) 62%,rgba(169,220,255,.3) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+}
+.glass::after{                        /* specular glint along the upper edge */
+  content:"";position:absolute;left:8%;right:8%;top:0;height:1px;pointer-events:none;z-index:2;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);opacity:.55;
+}
+.glass.sm{border-radius:var(--r-md)}
+.glass.pill{border-radius:var(--r-pill)}
+.glass.pad{padding:1.1rem 1.35rem}
+/* no backdrop-filter → an honest opaque fallback, same layers */
+@supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .glass{background:
+    radial-gradient(130% 90% at var(--mx,18%) var(--my,0%),rgba(190,228,255,.12),transparent 58%),
+    linear-gradient(158deg,rgba(22,52,84,.94),rgba(8,22,40,.96))}
+}
+/* Chromium-only: true edge refraction of what is behind the dock (see fx.js; text is never filtered) */
+.dock.refract{-webkit-backdrop-filter:url(#lg-refract) blur(8px) saturate(1.5);backdrop-filter:url(#lg-refract) blur(8px) saturate(1.5)}
+body.q2 .dock.refract{-webkit-backdrop-filter:none;backdrop-filter:none}
