@@ -1,0 +1,442 @@
+{
+ "date": "2026-11-02T14:24:53.757Z",
+ "passed": 87,
+ "failed": 0,
+ "results": [
+  [
+   "PASS",
+   "deep link #7 opens slide 7",
+   ""
+  ],
+  [
+   "PASS",
+   "12 slides registered",
+   ""
+  ],
+  [
+   "PASS",
+   "ArrowRight → 8",
+   ""
+  ],
+  [
+   "PASS",
+   "ArrowLeft ×2 → 6",
+   ""
+  ],
+  [
+   "PASS",
+   "Home → 1",
+   ""
+  ],
+  [
+   "PASS",
+   "End → 12",
+   ""
+  ],
+  [
+   "PASS",
+   "digit keys 1…9, 0, -, = jump correctly",
+   ""
+  ],
+  [
+   "PASS",
+   "hashchange navigates (#3)",
+   ""
+  ],
+  [
+   "PASS",
+   "dock number button → slide 6",
+   ""
+  ],
+  [
+   "PASS",
+   "dock next → 7",
+   ""
+  ],
+  [
+   "PASS",
+   "dock prev → 6",
+   ""
+  ],
+  [
+   "PASS",
+   "liquid dock indicator sits on the active slide",
+   "{\"L\":196,\"Il\":196,\"R\":235,\"Ir\":235}"
+  ],
+  [
+   "PASS",
+   "URL hash follows the slide",
+   ""
+  ],
+  [
+   "PASS",
+   "'o' opens #overview",
+   ""
+  ],
+  [
+   "PASS",
+   "Esc closes it",
+   ""
+  ],
+  [
+   "PASS",
+   "'?' opens #help",
+   ""
+  ],
+  [
+   "PASS",
+   "Esc closes it",
+   ""
+  ],
+  [
+   "PASS",
+   "'a' opens #appendix",
+   ""
+  ],
+  [
+   "PASS",
+   "Esc closes it",
+   ""
+  ],
+  [
+   "PASS",
+   "appendix has 10 sections with computed numbers",
+   ""
+  ],
+  [
+   "PASS",
+   "N shows presenter notes",
+   ""
+  ],
+  [
+   "PASS",
+   "M shows audit mode with live values",
+   "Mathematical audit · slide 6this ray: angle(reflected, →F₂) 1.35e-14°max over 15"
+  ],
+  [
+   "PASS",
+   "tools popover opens",
+   ""
+  ],
+  [
+   "PASS",
+   "popover closes with Esc",
+   ""
+  ],
+  [
+   "PASS",
+   "audit mode computes on all 12 slides without error",
+   ""
+  ],
+  [
+   "PASS",
+   "segmented control moves the liquid indicator to “Statistics”",
+   ""
+  ],
+  [
+   "PASS",
+   "statistics layer holds the seeded sample points",
+   "423 points"
+  ],
+  [
+   "PASS",
+   "Reveal the Question shows the question",
+   ""
+  ],
+  [
+   "PASS",
+   "Pause button toggles to Play",
+   ""
+  ],
+  [
+   "PASS",
+   "R resets the experiment (question hidden)",
+   ""
+  ],
+  [
+   "PASS",
+   "Space toggles the animation",
+   ""
+  ],
+  [
+   "PASS",
+   "d₁ + d₂ stays 10 after dragging on the curve",
+   "10"
+  ],
+  [
+   "PASS",
+   "measurements are inside an expandable panel",
+   ""
+  ],
+  [
+   "PASS",
+   "↓ reaches step 8 / 8",
+   ""
+  ],
+  [
+   "PASS",
+   "only current + previous step are visible in presentation mode",
+   ""
+  ],
+  [
+   "PASS",
+   "Show all reveals the full derivation (8 steps)",
+   ""
+  ],
+  [
+   "PASS",
+   "live check: measured d₁ equals a + cx/a",
+   "0"
+  ],
+  [
+   "PASS",
+   "a morphs continuously (5 → … → 8), not a jump",
+   "6 intermediate frames, monotone, final=8"
+  ],
+  [
+   "PASS",
+   "c, e, area at (8,4) equal the engine",
+   ""
+  ],
+  [
+   "PASS",
+   "perimeter equals 4aE(e)",
+   ""
+  ],
+  [
+   "PASS",
+   "“Make it a circle” morphs to e = 0 and shows the circle badge",
+   ""
+  ],
+  [
+   "PASS",
+   "Reset returns to a = 5, b = 4",
+   ""
+  ],
+  [
+   "PASS",
+   "θ = 30° shows the verified equation 73x² − 18√3xy + 91y² = 1600",
+   ""
+  ],
+  [
+   "PASS",
+   "eigenvalues stay 1/25 and 1/16 under rotation",
+   "λ₁ = 0.04000000 (= 1/25)λ₂ = 0.06250000 (= 1/16)semi-axes 1/"
+  ],
+  [
+   "PASS",
+   "reflected ray hits F₂ (miss angle ≈ 0) after dragging",
+   "9.54e-15°"
+  ],
+  [
+   "PASS",
+   "θᵢ = θᵣ",
+   ""
+  ],
+  [
+   "PASS",
+   "four labels on the figure",
+   ""
+  ],
+  [
+   "PASS",
+   "preset button becomes pressed (liquid indicator)",
+   ""
+  ],
+  [
+   "PASS",
+   "+100 bounces ×2 adds ≥ 200 bounces",
+   "201"
+  ],
+  [
+   "PASS",
+   "λ is conserved: drift < 1e-9",
+   "1.42e-14"
+  ],
+  [
+   "PASS",
+   "invariant λ for the hyperbola preset equals the engine",
+   "23.78544593 vs 23.78544593"
+  ],
+  [
+   "PASS",
+   "“Through F₁” shows the numerical-instability notice",
+   ""
+  ],
+  [
+   "PASS",
+   "Start/Pause toggles",
+   ""
+  ],
+  [
+   "PASS",
+   "Reset restores the generic preset",
+   ""
+  ],
+  [
+   "PASS",
+   "advanced controls live in an expandable panel",
+   ""
+  ],
+  [
+   "PASS",
+   "Kepler speed readout is a number",
+   "3.894"
+  ],
+  [
+   "PASS",
+   "Kepler: sector table lists 4 measured rows",
+   ""
+  ],
+  [
+   "PASS",
+   "equal-area spread is tiny",
+   "each of 12 sectors (Δt = T/12)5.235988 … 5.235988spread max − min2.75e"
+  ],
+  [
+   "PASS",
+   "interval selector rebuilds the wedges (T/24)",
+   ""
+  ],
+  [
+   "PASS",
+   "10,000 samples drawn automatically, progressively",
+   "10,000 / 10,000"
+  ],
+  [
+   "PASS",
+   "empirical coverage equals the seeded engine count (39.35 % row)",
+   "39.51% vs 39.51%"
+  ],
+  [
+   "PASS",
+   "95 % row equals the engine count",
+   "95.32%"
+  ],
+  [
+   "PASS",
+   "95 % region toggle works",
+   ""
+  ],
+  [
+   "PASS",
+   "New seed re-runs and completes",
+   ""
+  ],
+  [
+   "PASS",
+   "perimeter table: AGM value equals the engine",
+   ""
+  ],
+  [
+   "PASS",
+   "finale: clicking a connection updates the card and links to its slide",
+   ""
+  ],
+  [
+   "PASS",
+   "D switches to Research mode",
+   ""
+  ],
+  [
+   "PASS",
+   "Research mode reveals extra controls",
+   ""
+  ],
+  [
+   "PASS",
+   "experiment state survives the mode switch (a = 7)",
+   ""
+  ],
+  [
+   "PASS",
+   "D returns to Presentation mode",
+   ""
+  ],
+  [
+   "PASS",
+   "every button has an accessible name",
+   ""
+  ],
+  [
+   "PASS",
+   "inactive slides are inert",
+   ""
+  ],
+  [
+   "PASS",
+   "keyboard focus lands on a control and matches :focus-visible",
+   ""
+  ],
+  [
+   "PASS",
+   "no console / page / network errors during the whole run",
+   ""
+  ],
+  [
+   "PASS",
+   "App.reduced is true",
+   ""
+  ],
+  [
+   "PASS",
+   "title reveal and loops are disabled",
+   ""
+  ],
+  [
+   "PASS",
+   "Gaussian experiment completes instantly (no progressive animation)",
+   ""
+  ],
+  [
+   "PASS",
+   "lab snaps to the target (no morph) when motion is reduced",
+   ""
+  ],
+  [
+   "PASS",
+   "no errors with reduced motion",
+   ""
+  ],
+  [
+   "PASS",
+   "laptop 1366×768: all 12 slides fit horizontally",
+   ""
+  ],
+  [
+   "PASS",
+   "laptop 1366×768: no page errors",
+   ""
+  ],
+  [
+   "PASS",
+   "laptop 1440×900: all 12 slides fit horizontally",
+   ""
+  ],
+  [
+   "PASS",
+   "laptop 1440×900: no page errors",
+   ""
+  ],
+  [
+   "PASS",
+   "tablet 768: all 12 slides fit horizontally",
+   ""
+  ],
+  [
+   "PASS",
+   "tablet 768: no page errors",
+   ""
+  ],
+  [
+   "PASS",
+   "mobile 390: all 12 slides fit horizontally",
+   ""
+  ],
+  [
+   "PASS",
+   "mobile 390: no page errors",
+   ""
+  ]
+ ]
+}
